@@ -3,43 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <title>Tambah Produk</title>
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body>
-    <h1>Tambah Produk</h1>
 
-<form action="/admin/products/store" method="POST" enctype="multipart/form-data">
+<body class="create-page">
 
-    @csrf
+<!-- NAVBAR -->
 
-    <input type="text" name="name" placeholder="Nama">
+<nav class="navbar">
 
-    <br><br>
+    <div class="logo">
+        BURGER KINGDOM
+    </div>
 
-    <textarea
-        name="description"
-        placeholder="Deskripsi"
-        rows="4"
-        cols="40"
-    ></textarea>
+    <ul class="nav-links">
 
-    <input type="number" name="price" placeholder="Harga">
+        <li><a href="/admin/products">Menu</a></li>
 
-    <br><br>
+        <li><a href="/admin/orders">Orders</a></li>
 
-    <input type="number" name="stock" placeholder="Stock">
+    </ul>
 
-    <br><br>
+    <a href="/logout" class="profile-box">
+        Admin
+    </a>
 
-    <input type="file" name="image">
+</nav>
 
-    <br><br>
+<!-- FORM -->
 
-    <button type="submit">
-        Simpan
-    </button>
+<div class="create-container">
 
-</form>
+    <div class="create-card">
+
+        <h1>Tambah Produk</h1>
+
+        <form action="/admin/products/store"
+              method="POST"
+              enctype="multipart/form-data">
+
+            @csrf
+
+            <!-- NAMA -->
+            <div class="form-group">
+
+                <label>Nama Produk</label>
+
+                <input type="text"
+                       name="name"
+                       placeholder="Masukkan nama burger">
+
+            </div>
+
+            <!-- DESKRIPSI -->
+            <div class="form-group">
+
+                <label>Deskripsi</label>
+
+                <textarea name="description"
+                          placeholder="Deskripsi burger"></textarea>
+
+            </div>
+
+            <!-- HARGA -->
+            <div class="form-group">
+
+                <label>Harga</label>
+
+                <input type="number"
+                       name="price"
+                       placeholder="Masukkan harga">
+
+            </div>
+
+            <!-- STOCK -->
+            <div class="form-group">
+
+                <label>Stock</label>
+
+                <input type="number"
+                       name="stock"
+                       placeholder="Masukkan stock">
+
+            </div>
+
+            <!-- IMAGE -->
+            <div class="form-group">
+
+                <label>Gambar Produk</label>
+
+                <input type="file" name="image">
+
+            </div>
+
+            <!-- BUTTON -->
+            <button type="submit" class="save-btn">
+                Simpan Produk
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
 </body>
 </html>

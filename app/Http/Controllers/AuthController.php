@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-
     // FORM REGISTER
     public function showRegister()
     {
@@ -37,26 +36,22 @@ class AuthController extends Controller
 
     // LOGIN
     public function login(Request $request)
-{
-    $credentials = $request->only('email', 'password');
-
-    if (Auth::attempt($credentials))
     {
-        $request->session()->regenerate();
+        $credentials = $request->only('email', 'password');
 
-        // CEK ROLE
-        if (Auth::user()->role == 'admin')
-        {
-            return redirect('/admin/products');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            // CEK ROLE
+            if (Auth::user()->role == 'admin') {
+                return redirect('/admin/products');
+            } else {
+                return redirect('/menu');
+            }
         }
-        else
-        {
-            return redirect('/burger');
-        }
+
+        return back()->with('error', 'Email atau password salah');
     }
-
-    return back()->with('error', 'Email atau password salah');
-}
 
     // LOGOUT
     public function logout()

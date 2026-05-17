@@ -48,57 +48,73 @@
 
             <div class="cart-card">
 
-                <img
-                    src="{{ asset('images/' . $item->product->image) }}"
-                    class="cart-img"
-                >
+    <!-- GAMBAR -->
+    <img
+        src="{{ asset('images/' . $item->product->image) }}"
+        class="cart-img"
+    >
 
-                <div class="cart-detail">
+    <!-- DETAIL -->
+    <div class="cart-detail">
 
-                    <h2>
-                        {{ $item->product->name }}
-                    </h2>
+        <h2>
+            {{ $item->product->name }}
+        </h2>
 
-                    <p class="note">
-                        {{ $item->note }}
-                    </p>
+        <p class="note">
+            {{ $item->note }}
+        </p>
 
-                    <div class="qty-box">
+       <!-- QTY -->
+<div class="qty-box">
 
-                        <button>-</button>
-
-                        <span>
-                            {{ $item->quantity }}
-                        </span>
-
-                        <button>+</button>
-
-                    </div>
-
-                </div>
-
-                <div class="price-box">
-
-    <!-- DELETE -->
-    <form action="/cart/item/{{ $item->id }}" method="POST">
-
+    <!-- MINUS -->
+    <form action="/cart/decrease/{{ $item->id }}" method="POST">
         @csrf
-        @method('DELETE')
 
-        <button type="submit" class="delete-btn">
-            🗑
+        <button type="submit">
+            -
         </button>
-
     </form>
 
-    <p>
-        Rp {{ number_format($subtotal) }}
-    </p>
+    <span>
+        {{ $item->quantity }}
+    </span>
+
+    <!-- PLUS -->
+    <form action="/cart/increase/{{ $item->id }}" method="POST">
+        @csrf
+
+        <button type="submit">
+            +
+        </button>
+    </form>
 
 </div>
-                </div>
 
-            </div>
+    </div>
+
+    <!-- HARGA + DELETE -->
+    <div class="price-box">
+
+        <form action="/cart/item/{{ $item->id }}" method="POST">
+
+            @csrf
+            @method('DELETE')
+
+            <button type="submit" class="delete-btn">
+                🗑
+            </button>
+
+        </form>
+
+        <p>
+            Rp {{ number_format($subtotal) }}
+        </p>
+
+    </div>
+
+</div>
 
             @endforeach
 
@@ -120,9 +136,9 @@
 
         </div>
 
-        <button class="checkout-btn">
+                <a href="/payment" class="checkout-btn">
             Lanjut ke Pembayaran
-        </button>
+        </a>
 
     </div>
 

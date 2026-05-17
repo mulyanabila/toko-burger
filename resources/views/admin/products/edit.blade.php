@@ -3,56 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <title>Edit Produk</title>
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body>
-    <h1>Edit Produk</h1>
 
-<form action="/admin/products/update/{{ $product->id }}"
-method="POST"
-enctype="multipart/form-data">
+<body class="create-page">
 
-    @csrf
+<!-- NAVBAR -->
 
-    <input type="text"
-    name="name"
-    value="{{ $product->name }}">
+<nav class="navbar">
 
-    <br><br>
+    <div class="logo">
+        BURGER KINGDOM
+    </div>
 
-        <textarea
-            name="description"
-            placeholder="Deskripsi"
-            rows="4"
-            cols="40"
-        >{{ $product->description }}</textarea>
+    <ul class="nav-links">
 
-    <input type="number"
-    name="price"
-    value="{{ $product->price }}">
+        <li><a href="/admin/products">Menu</a></li>
 
-    <br><br>
+        <li><a href="/admin/orders">Orders</a></li>
 
-    <input type="number"
-    name="stock"
-    value="{{ $product->stock }}">
+    </ul>
 
-    <br><br>
+    <a href="/logout" class="profile-box">
+        Admin
+    </a>
 
-    <img src="{{ asset('images/' . $product->image) }}"
-    width="120">
+</nav>
 
-    <br><br>
+<!-- FORM -->
 
-    <input type="file" name="image">
+<div class="create-container">
 
-    <br><br>
+    <div class="create-card">
 
-    <button type="submit">
-        Update
-    </button>
+        <h1>Edit Produk</h1>
 
-</form>
+        <form action="/admin/products/update/{{ $product->id }}"
+              method="POST"
+              enctype="multipart/form-data">
+
+            @csrf
+
+            <!-- IMAGE -->
+            <img
+                src="{{ asset('images/' . $product->image) }}"
+                class="preview-img"
+            >
+
+            <!-- NAMA -->
+            <div class="form-group">
+
+                <label>Nama Produk</label>
+
+                <input type="text"
+                       name="name"
+                       value="{{ $product->name }}">
+
+            </div>
+
+            <!-- DESKRIPSI -->
+            <div class="form-group">
+
+                <label>Deskripsi</label>
+
+                <textarea name="description">{{ $product->description }}</textarea>
+
+            </div>
+
+            <!-- HARGA -->
+            <div class="form-group">
+
+                <label>Harga</label>
+
+                <input type="number"
+                       name="price"
+                       value="{{ $product->price }}">
+
+            </div>
+
+            <!-- STOCK -->
+            <div class="form-group">
+
+                <label>Stock</label>
+
+                <input type="number"
+                       name="stock"
+                       value="{{ $product->stock }}">
+
+            </div>
+
+            <!-- IMAGE -->
+            <div class="form-group">
+
+                <label>Ganti Gambar</label>
+
+                <input type="file" name="image">
+
+            </div>
+
+            <button type="submit" class="save-btn">
+                Update Produk
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
 </body>
 </html>

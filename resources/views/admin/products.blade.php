@@ -3,51 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <title>Admin Menu</title>
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body>
+
+<body class="admin-page">
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        BURGER KINGDOM
+    </div>
+
+    <ul class="nav-links">
+
+        <li><a href="/menu">Menu</a></li>
+
+        <li><a href="/admin/orders">Orders</a></li>
+
+    </ul>
+
+    <a href="/logout" class="profile-box">
+        Admin
+    </a>
+
+</nav>
+
+<!-- HEADER -->
+
+<div class="admin-header">
+
     <h1>DATA MENU</h1>
 
-<a href="/admin/products/create">
-    Tambah Menu
-</a>
+    <a href="/admin/products/create" class="add-btn">
+        + Tambah Menu
+    </a>
 
-<table border="1" cellpadding="10">
+</div>
 
-<tr>
-    <th>Nama</th>
-    <th>Deskripsi</th>
-    <th>Harga</th>
-    <th>Stock</th>
-    <th>Action</th>
-</tr>
+<!-- PRODUCT GRID -->
 
-@foreach($products as $p)
+<div class="admin-grid">
 
-<tr>
+@foreach($products as $product)
 
-    <td>{{ $p->name }}</td>
-    <td>{{ $p->description }}</td>
-    <td>{{ $p->price }}</td>
-    <td>{{ $p->stock }}</td>
+    <div class="admin-card">
 
-    <td>
+        <!-- IMAGE -->
+        <img
+            src="{{ asset('images/' . $product->image) }}"
+            class="admin-img"
+        >
 
-        <a href="/admin/products/edit/{{ $p->id }}">
-            Edit
-        </a>
+        <!-- INFO -->
+        <div class="admin-info">
 
-        <a href="/admin/products/delete/{{ $p->id }}">
-            Delete
-        </a>
+            <h2>
+                {{ $product->name }}
+            </h2>
 
-    </td>
+            <p>
+                {{ $product->description }}
+            </p>
 
-</tr>
+            <div class="price-stock">
+
+                <span>
+                    Rp {{ number_format($product->price) }}
+                </span>
+
+                <b>
+                    Stock: {{ $product->stock }}
+                </b>
+
+            </div>
+
+        </div>
+
+        <!-- BUTTON -->
+        <div class="admin-action">
+
+            <a href="/admin/products/edit/{{ $product->id }}"
+               class="edit-btn">
+                Edit
+            </a>
+
+            <a href="/admin/products/delete/{{ $product->id }}"
+                class="delete-btn-admin"
+                onclick="return confirm('Yakin ingin menghapus menu ini?')">
+                Delete
+            </a>
+
+        </div>
+
+    </div>
 
 @endforeach
 
-</table>
+</div>
+
 </body>
 </html>

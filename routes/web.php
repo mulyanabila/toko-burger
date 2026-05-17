@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/{id}', [OrderController::class, 'add']);
     Route::delete('/cart/item/{id}', [OrderController::class, 'delete']);
     Route::get('/cart', [OrderController::class, 'cart']);
+    Route::post('/cart/increase/{id}', [OrderController::class, 'increaseQty']);
+    Route::post('/cart/decrease/{id}', [OrderController::class, 'decreaseQty']);
 
     // CHECKOUT
     Route::get('/checkout', [OrderController::class, 'checkout']);
@@ -62,20 +64,22 @@ Route::middleware('auth')->group(function () {
 
     // PAY
     Route::get('/pay/{id}', [OrderController::class, 'pay']);
+    Route::get('/payment', [OrderController::class, 'payment']);
+    Route::post('/payment/process', [OrderController::class, 'processPayment']);
+    Route::get('/success/{id}', [OrderController::class, 'success']);
+
+    Route::get('/orders', [OrderController::class, 'orders']);
 });
 
 Route::middleware('auth')->group(function () {
 
     Route::get('/admin/products', [ProductController::class, 'admin']);
-
     Route::get('/admin/products/create', [ProductController::class, 'create']);
-
     Route::post('/admin/products/store', [ProductController::class, 'store']);
-
     Route::get('/admin/products/edit/{id}', [ProductController::class, 'edit']);
-
     Route::post('/admin/products/update/{id}', [ProductController::class, 'update']);
-
     Route::get('/admin/products/delete/{id}', [ProductController::class, 'delete']);
+
+    Route::get('/admin/orders', [OrderController::class, 'adminOrders']);
 
 });

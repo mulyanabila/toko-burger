@@ -20,7 +20,7 @@
 
     <ul>
         <li class="active">
-            <a href="/burger">Menu</a>
+            <a href="/menu">Menu</a>
         </li>
 
             <li>
@@ -28,7 +28,7 @@
         </li>
 
         <li>
-            <a href="/cart">Orders</a>
+            <a href="/orders">Orders</a>
         </li>
 
         <li>
@@ -137,46 +137,91 @@
     <div class="options">
 
     <label class="option-btn">
-        <input type="checkbox" class="extra" value="5000">
+        <input type="checkbox"
+       name="telur"
+       class="extra"
+       value="5000">
         <span>Tambah Telur +5.000</span>
     </label>
 
     <label class="option-btn">
-        <input type="checkbox" class="extra" value="10000">
+        <input type="checkbox"
+       name="keju"
+       class="extra"
+       value="4000">
+        <span>Tambah Keju +4.000</span>
+    </label>
+
+    <label class="option-btn">
+        <input type="checkbox"
+       name="double_telur"
+       class="extra"
+       value="10000">
         <span>Double Telur +10.000</span>
     </label>
 
     <label class="option-btn">
-        <input type="checkbox" class="extra" value="6000">
-        <span>Tambah Keju +6.000</span>
+        <input type="checkbox"
+       name="double_keju"
+       class="extra"
+       value="6000">
+        <span>Double Keju +6.000</span>
     </label>
 
     <label class="option-btn">
-        <input type="checkbox" class="extra" value="12000">
+       <input type="checkbox"
+       name="double_cheese"
+       class="extra"
+       value="12000">
         <span>Double Cheese +12.000</span>
     </label>
 
     <label class="option-btn">
-        <input type="checkbox" class="extra" value="2000">
+        <input type="checkbox"
+       name="extra_saus"
+       class="extra"
+       value="2000">
         <span>Extra Saus +2.000</span>
     </label>
 
     <label class="option-btn">
-        <input type="checkbox" class="extra" value="-2000">
+        <input type="checkbox"
+       name="tanpa_sayur"
+       class="extra"
+       value="-2000">
         <span>Tanpa Sayur -2.000</span>
     </label>
 
     <label class="option-btn">
-        <input type="checkbox" class="extra" value="-1000">
+        <input type="checkbox"
+       name="tanpa_tomat"
+       class="extra"
+       value="-1000">
         <span>Tanpa Tomat -1.000</span>
     </label>
 
     <label class="option-btn">
-        <input type="checkbox" class="extra" value="-1000">
+        <input type="checkbox"
+       name="tanpa_saus"
+       class="extra"
+       value="-1000">
         <span>Tanpa Saus -1.000</span>
     </label>
 
 </div>
+
+        <!-- CATATAN -->
+        <textarea
+            name="note"
+            class="note-input"
+            placeholder="Tambahkan catatan pesanan...">
+        </textarea>
+
+        <!-- QUANTITY -->
+        <input type="hidden"
+            name="quantity"
+            id="quantityInput"
+            value="1">
 
     <!-- QTY + BUTTON -->
    <div class="bottom-action">
@@ -195,13 +240,11 @@
         Tambah Rp 30.000
     </button>
 
-</div>
-        
     </div>
 
 </form>
 
-    </div>
+        </div>
 
 </div>
 
@@ -266,7 +309,7 @@ function plusQty()
     qty++;
 
     document.getElementById('qty').innerText = qty;
-
+    document.getElementById('quantityInput').value = qty;
     updatePrice();
 }
 
